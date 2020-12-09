@@ -1,0 +1,90 @@
+<div class="mat-app-background basic-container">
+  <ng-template #customLoadingTemplate>
+    <div class="custom-class">
+      <h3>
+        Loading...
+      </h3>
+    </div>
+  </ng-template>
+
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"
+               [template]="customLoadingTemplate"></ngx-loading>
+</div>
+<div class="container" style="padding: 20px;margin-top: 100px;min-height: 600px;padding-top: 0; z-index: 9998;">
+  <div class="clean-blog-post" style="padding: 20px;padding-bottom: 25px;margin: 15px;">
+    <!-- Submit New Post Button -->
+    <div class="row" style="margin: 0;" *ngIf="email != null && email!=''">
+      <div class="col"></div>
+      <div class="col"></div>
+      <div class="col">
+        <a (click)="addPost()">
+          <button class="btn btn-outline-primary float-right" type="button">
+            <i class="icon-pencil"></i>New Post
+          </button>
+        </a>
+      </div>
+      <div class="col">
+        <a routerLink="/recommendations">
+          <button class="btn btn-outline-primary float-right" type="button">
+            <i class="icon-rocket"></i>Recommendations
+          </button>
+        </a>
+      </div>
+    </div>
+
+    <!-- Quote -->
+    <div class="row" style="margin: 0;margin-top: 20px;">
+      <div class="col">
+        <div class="block-heading">
+          <h2 class="text-info d-flex justify-content-center align-items-center">
+            Posts
+          </h2>
+          <p class="d-flex justify-content-center"
+             style="color: rgb(112,116,120);">
+            Let's support and share all the things we love!<br/>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Posts -->
+    <div
+      class="row d-flex justify-content-center shadow-sm border rounded"
+      style="margin-left: 0;margin-right: 0;margin-top: 10px;padding-top: 25px;padding-bottom: 25px;"
+      *ngFor="let post of postList">
+      <div class="col-lg-11 order-11">
+        <h5> {{post.title}}
+          <div style="float: right" *ngIf="email==post.user.email">
+            <button class="buttonEdit" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+              class="fa fa-ellipsis-v"></i>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" (click)="editPost(post)" style="font-size: 13px"><i class="fa fa-edit"></i>
+                  Edit</a>
+                <a class="dropdown-item" (click)="deletePost(post)" style="font-size: 13px"><i class="fa fa-trash"></i>
+                  Delete</a>
+              </div>
+            </button>
+          </div>
+        </h5>
+        <div class="info">
+              <span class="text-muted" style="margin-right: 0;">
+                <span>{{post.prettyTime}}</span>by <img width="30px" height="30px" style="border-radius: 50%"
+                                                        src="{{post.user.urlImg}}"><a
+                (click)="viewProfile(post.user.email)"
+                style="color: rgb(0,123,255);">   {{post.user.username}}</a></span>
+        </div>
+        <p style="font-size: 15px;">
+          {{post.content}}
+        </p>
+        <a (click)="viewPost(post.id)">
+          <button class="btn btn-outline-primary btn-sm" type="button">
+            Read More
+          </button>
+        </a>
+        <a style="margin-left: 20px; color: rgb(0,123,255)" (click)="viewPost(post.id)">{{post.comments.length}}
+          comments</a>
+
+      </div>
+    </div>
+  </div>
+</div>

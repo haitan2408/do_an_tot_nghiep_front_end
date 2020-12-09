@@ -1,0 +1,89 @@
+<div class="mat-app-background basic-container">
+  <ng-template #customLoadingTemplate>
+    <div class="custom-class">
+      <h3>
+        Loading...
+      </h3>
+    </div>
+  </ng-template>
+
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"
+               [template]="customLoadingTemplate"></ngx-loading>
+
+</div>
+<main class="page faq-page">
+  <section
+    class="clean-block clean-faq dark"
+    style="background-color: rgb(255,255,255);"
+  >
+    <div class="container">
+      <div class="block-heading">
+        <h2 class="text-info">Comments</h2>
+        <p>Treat others the way you want to be treated.<br/></p>
+      </div>
+
+      <div class="block-content">
+        <div class="alert alert-success" role="alert" *ngIf="success">
+          New comment was created!
+        </div>
+
+        <div class="faq-item">
+          <h5>{{post.title}}</h5>
+          <div class="info">
+                <span class="text-muted">
+                    <span style="margin-top: 10px;">
+                       {{post.prettyTime}}</span> by <a (click)="viewProfile(post.user.email)"
+                                                        style="color: rgb(0,123,255);">{{post.user.username}}</a></span
+                >
+          </div>
+
+          <p style="font-size: 16px;margin-bottom: 20px;margin-top: 10px;">
+            {{post.content}}
+          </p>
+          <span class="d-lg-flex align-items-lg-center">
+            <i class="icon-bubbles" style="margin-right: 7px;font-size: 20px;"></i>
+            {{post.comments.length}} Comments</span>
+
+          <form *ngIf="email" id="frmAddComment" [formGroup]="formComment" (ngSubmit)="onSubmitNewComment()">
+            <div class="form-group">
+              <textarea class="form-control" rows="3" formControlName="body"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Comment</button>
+          </form>
+
+          <hr/>
+        </div>
+        <div class="faq-item" *ngFor="let comment of post.comments">
+          <div class="answer" style="padding: 15px;">
+            <div *ngIf="comment.id != idCommentEdit">
+                <span class="text-muted" style="margin-top: 10px;margin-bottom: 20px;font-size: 15px;">
+                    <span>{{comment.prettyTime}}</span> by
+                  <a style="color: rgb(0,123,255);"
+                     (click)="viewProfile(comment.user.email)">{{comment.user.username}}</a>
+                </span>
+              <button *ngIf="email == comment.user.email" style="float: right" class="buttonEdit" data-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false"><i
+                class="fa fa-ellipsis-v"></i>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" (click)="editComment(comment)" style="font-size: 13px"><i
+                    class="fa fa-edit"></i> Edit</a>
+                  <a class="dropdown-item" (click)="deleteComment(comment)" style="font-size: 13px"><i
+                    class="fa fa-trash"></i> Delete</a>
+                </div>
+              </button>
+              <p style="color: rgba(0,0,0,0.93);margin: 0;margin-top: 10px;font-size: 15px;">
+                {{comment.body}}
+              </p>
+            </div>
+            <form *ngIf="comment.id == idCommentEdit">
+              <div class="form-group">
+                <textarea class="form-control" rows="3" [(ngModel)]="contentCommentEdit" name="contentCommentEdit"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary" (click)="updateComment(comment)">Update Comment</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

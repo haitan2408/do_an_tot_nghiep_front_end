@@ -1,0 +1,142 @@
+<main class="page registration-page">
+  <section
+    class="clean-block clean-form dark"
+    style="background-color: rgb(255,255,255);"
+  >
+    <div class="container">
+      <div class="block-heading">
+        <h2 class="text-info">Registration</h2>
+        <p>This will only take 2 minutes of your time.</p>
+      </div>
+
+      <!-- Success Registration-->
+      <div class="row d-flex justify-content-center" *ngIf="success">
+        <div class="col-6 alert alert-success " role="alert">
+          Success! Thank you for registering.
+        </div>
+      </div>
+
+      <form method="POST" class="shadow" role="form" [formGroup]="registerForm" (ngSubmit)="onSubmitRegisters()" *ngIf="!success">
+        <!-- Validation Errors -->
+        <!--        <div class="row" th:if="${validationErrors}">-->
+        <!--        <div class="col d-flex justify-content-center align-items-center">-->
+        <!--                <span class="text-danger align-middle">-->
+        <!--                  <ul th:each="error : ${validationErrors}">-->
+        <!--                    <li th:text="${error.getDefaultMessage()}"></li>-->
+        <!--                  </ul>-->
+        <!--                </span>-->
+        <!--        </div>-->
+        <!--      </div>-->
+
+        <div class="form-group">
+          <label for="fullName">Full Name</label>
+          <input class="form-control item" type="text" id="fullName" placeholder="John Doe" name="fullName" formControlName="fullName"
+            required autofocus/>
+        </div>
+        <div *ngFor="let validation of validation_messages.fullName">
+          <div class="error-message"
+               *ngIf="registerForm.get('fullName').hasError(validation.type) && (registerForm.get('fullName').dirty || registerForm.get('fullName').touched)">
+            {{validation.message}}
+          </div>
+          <div class="error-message">
+            {{listError.fullName}}
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input class="form-control item" type="email" id="email" placeholder="JohnDoe@gmail.com" name="email" formControlName="email"
+            required autofocus/>
+        </div>
+        <div *ngFor="let validation of validation_messages.email">
+          <div class="error-message"
+                     *ngIf="registerForm.get('email').hasError(validation.type) && (registerForm.get('email').dirty || registerForm.get('email').touched)">
+            {{validation.message}}</div>
+        </div>
+        <div class="error-message">
+          {{listError.email}}
+        </div>
+        <div class="form-group">
+          <label for="username">GitHub Username</label>
+          <input class="form-control item" type="text" id="username" placeholder="JDoe" name="username" formControlName="username"
+            required autofocus/>
+        </div>
+        <div *ngFor="let validation of validation_messages.username">
+          <div class="error-message"
+                     *ngIf="registerForm.get('username').hasError(validation.type) && (registerForm.get('username').dirty || registerForm.get('username').touched)">
+            {{validation.message}}</div>
+        </div>
+        <div class="error-message">
+          {{listError.username}}
+        </div>
+        <div class="form-group">
+          <label for="education">Education</label>
+          <input class="form-control item" type="text" id="education" placeholder="Bachelors in Computer Science" name="education" formControlName="education"
+            required autofocus/>
+        </div>
+        <div *ngFor="let validation of validation_messages.education">
+          <div class="error-message"
+                     *ngIf="registerForm.get('education').hasError(validation.type) && (registerForm.get('education').dirty || registerForm.get('education').touched)">
+            {{validation.message}}</div>
+        </div>
+        <div class="error-message">
+        {{listError.education}}
+      </div>
+        <div class="form-group">
+          <label for="skills">Skills Summary</label>
+          <input class="form-control item" type="text" id="skills" placeholder="Java, React, Web-Dev, SQL" name="skill" formControlName="skills"
+            required autofocus/>
+        </div>
+        <div *ngFor="let validation of validation_messages.skills">
+          <div class="error-message"
+                     *ngIf="registerForm.get('skills').hasError(validation.type) && (registerForm.get('skills').dirty || registerForm.get('skills').touched)">
+            {{validation.message}}</div>
+        </div>
+        <div class="error-message">
+          {{listError.skills}}
+        </div>
+        <div class="form-group">
+          <label for="experience">Experience</label>
+          <input class="form-control item" type="text" id="experience" placeholder="4 years of Software Engineering using Java Spring and JavaScript React."
+            name="work" formControlName="experience" required autofocus/>
+        </div>
+        <div *ngFor="let validation of validation_messages.experience">
+          <div class="error-message"
+                     *ngIf="registerForm.get('experience').hasError(validation.type) && (registerForm.get('experience').dirty || registerForm.get('experience').touched)">
+            {{validation.message}}</div>
+        </div>
+        <div class="error-message">
+          {{listError.experience}}
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input class="form-control item" type="password" id="password" name="password" formControlName="password"
+            required autofocus/>
+        </div>
+        <div *ngFor="let validation of validation_messages.password">
+          <div class="error-message"
+                     *ngIf="registerForm.get('password').hasError(validation.type) && (registerForm.get('password').dirty || registerForm.get('password').touched)">
+            {{validation.message}}</div>
+        </div>
+        <div class="error-message">
+          {{listError.password}}
+        </div>
+        <div class="form-group">
+          <label for="confirmPassword">Password (repeat)</label>
+          <input class="form-control item" type="password" id="confirmPassword" name="confirmPassword" formControlName="confirmPassword"
+            required autofocus/>
+        </div>
+        <div *ngFor="let validation of validation_messages.confirmPassword">
+          <div class="error-message"
+                     *ngIf="registerForm.get('confirmPassword').hasError(validation.type) && (registerForm.get('confirmPassword').dirty || registerForm.get('confirmPassword').touched)">
+            {{validation.message}}</div>
+        </div>
+        <div class="error-message">
+          {{listError.confirmPassword}}
+        </div>
+        <button class="btn btn-primary btn-block" type="submit">
+          Sign Up
+        </button>
+      </form>
+    </div>
+  </section>
+</main>

@@ -1,0 +1,68 @@
+<nav
+  class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
+  <div class="container">
+    <a class="navbar-brand1 logo" routerLink="/">Bách Khoa <strong>DaNang</strong></a><button
+    data-toggle="collapse"
+    class="navbar-toggler"
+    data-target="#navcol-1">
+          <span class="sr-only">Toggle navigation</span
+          ><span class="navbar-toggler-icon"></span>
+  </button>
+    <div class="collapse navbar-collapse" id="navcol-1" >
+      <ul class="nav navbar-nav ml-auto">
+        <li class="nav-item" role="presentation">
+          <a class="nav-link active" routerLink="">posts</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link">geeks</a>
+        </li>
+
+        <!-- if user is signed in -->
+        <li class="nav-item" role="presentation" *ngIf="username != null">
+          <a class="nav-link" (click)="viewProfile()">profile</a>
+        </li>
+
+        <li class="nav-item" role="presentation" *ngIf="username != null">
+          <button
+            class="nav-link link text-danger d-xl-flex justify-content-xl-center align-items-xl-center"
+            style="border: none; background: none;"
+            (click)="logout()"><i class="fa fa-sign-out"></i>logout</button>
+        </li>
+
+        <!-- if user is not signed in -->
+
+        <li class="nav-item" role="presentation" *ngIf="username == null">
+          <a
+            class="nav-link text-primary d-xl-flex justify-content-xl-center align-items-xl-center" routerLink="/login"
+          ><i class="fa fa-sign-in"></i>&nbsp;login</a
+          >
+        </li>
+
+        <li class="nav-item" role="presentation" *ngIf="username == null">
+          <a
+            class="nav-link text-success d-xl-flex justify-content-xl-center align-items-xl-center"
+            routerLink="/register"
+          ><i class="fa fa-user-plus" id="navbar-icon"></i
+          >&nbsp;register</a
+          >
+        </li>
+
+
+      </ul>
+    </div>
+  </div>
+</nav>
+<div
+  class="container"
+  style="padding: 20px;margin-top: 100px;min-height: 600px;padding-top: 0;"
+>
+  <router-outlet></router-outlet>
+</div>
+<!-- Start: Footer White -->
+<footer class="page-footer" style="margin-top: 30px;">
+  <div class="footer-copyright" style="margin: 0;padding: 0;">
+    <p>© 2020 Copyright Text</p>
+  </div>
+</footer>
+<!-- End: Footer White -->
+

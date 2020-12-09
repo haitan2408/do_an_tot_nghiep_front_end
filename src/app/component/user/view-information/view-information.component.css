@@ -1,0 +1,21 @@
+.error-message {
+  color: red;
+  margin-bottom: 10px;
+}
+.btn-upload {
+  float: right;
+  border: none;
+  background-color: white;
+  color: blue;
+}
+.btn-block {
+  display: block;
+  width: 70%
+}
+.btn-block-edit {
+  display: inline-block;
+  width: 40%
+}
+label {
+  font-weight: bold;
+}

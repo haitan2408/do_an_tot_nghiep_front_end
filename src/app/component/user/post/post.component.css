@@ -1,0 +1,10 @@
+.buttonEdit {
+  border: none;
+  background-color: white;
+  margin-right: 0px;
+  size: auto
+}
+.buttonEdit:hover {
+  background-color: wheat;
+}
+

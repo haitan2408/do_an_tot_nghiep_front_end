@@ -1,0 +1,70 @@
+<div class="title_left">
+  <h3>Tables <small>Comment</small></h3>
+</div>
+<div class="table-responsive">
+  <table class="table table-striped jambo_table bulk_action">
+    <thead>
+    <tr class="headings">
+      <th class="column-title" width="5%">#</th>
+      <th class="column-title" width="55%">Body</th>
+      <th class="column-title" width="15%">Creation Date</th>
+      <th class="column-title" width="15%">User</th>
+      <th class="column-title" width="15%">Email</th>
+      <th class="column-title no-link last" width="10%"><span class="nobr">Action</span>
+      </th>
+      <th class="bulk-actions" colspan="7">
+        <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> )
+          <i class="fa fa-chevron-down"></i></a>
+      </th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr *ngFor="let comment of comments; index as i">
+      <td class=" ">{{i + 1}}</td>
+      <td class=" ">{{comment.body}}</td>
+      <td class=" ">{{comment.creationDate}}</td>
+      <td class=" ">{{comment.user.username}}</td>
+      <td class=" ">{{comment.user.email}}</td>
+      <td class=" last">
+        <a href="#table" data-toggle="modal" style="font-size: 17px;"
+           (click)="openConfirm(comment.id, comment.user.email)">
+          &nbsp;&nbsp;<i style=" color: #ff1a15;font-size: 15px" class="fa fa-trash"></i></a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <div class="paging-course">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item" (click)="onFirst()" [ngClass]="pageClicked==0?'disabled':''">
+          <a class="page-link">First</a>
+        </li>
+        <li class="page-item" (click)="onPrevious()" [ngClass]="pageClicked==0?'disabled':''">
+          <a class="page-link">Previous</a>
+        </li>
+        <li *ngIf="pageClicked != 0" class="page-item" (click)="onSubmit(pages[pageClicked-1])">
+          <a class="page-link">{{pageClicked}}</a>
+        </li>
+        <li [ngClass]="(pageClicked == pages[pageClicked]) ? 'active' : ''" class="page-item"
+            (click)="onSubmit(pages[pageClicked])">
+          <a class="page-link">{{pageClicked + 1}}</a>
+        </li>
+        <li *ngIf="pageClicked < pages.length -1" class="page-item" (click)="onSubmit(pages[pageClicked+1])">
+          <a class="page-link">{{pageClicked + 2}}</a>
+        </li>
+        <li *ngIf="pageClicked < pages.length -2" class="page-item">
+          <a class="page-link">...</a>
+        </li>
+        <li *ngIf="pageClicked < pages.length-2" class="page-item" (click)="onLast()">
+          <a class="page-link">{{pages[pages.length - 1] + 1}}</a>
+        </li>
+        <li class="page-item" (click)="onNext()" [ngClass]="pageClicked==totalPages-1?'disabled':''">
+          <a class="page-link">Next</a>
+        </li>
+        <li class="page-item" (click)="onLast()" [ngClass]="pageClicked==totalPages-1?'disabled':''"><a
+          class="page-link">Last</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>

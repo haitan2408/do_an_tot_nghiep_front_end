@@ -1,0 +1,55 @@
+<div class="mat-app-background basic-container">
+  <ng-template #customLoadingTemplate>
+    <div class="custom-class">
+      <h3>
+        Loading...
+      </h3>
+    </div>
+  </ng-template>
+
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
+
+</div>
+<main class="page login-page">
+  <section
+    class="clean-block clean-form dark"
+    style="background-color: rgb(255,255,255);"
+  >
+    <div class="container">
+      <div class="block-heading">
+        <h2 class="text-info">Log In</h2>
+        <p>Geek is Portuguese for "pencil neck."<br /></p>
+      </div>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="shadow">
+        <div class="form-group">
+          <label for="email">Email</label
+          ><input class="form-control item" type="email" id="email" name="email" formControlName="email"/>
+        </div>
+        <div class="alert alert-danger" role="alert" *ngIf="loginForm.get('email').invalid && loginForm.get('email').touched">
+          Invalid username!
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label
+          ><input class="form-control" type="password" id="password" name="password" formControlName="password"/>
+        </div>
+        <div class="alert alert-danger" role="alert" *ngIf="loginForm.get('password').invalid && loginForm.get('password').touched">
+          Invalid password!
+        </div>
+        <div class="form-group">
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="checkbox"
+            /><label class="form-check-label" for="checkbox"
+          >Remember me</label
+          >
+          </div>
+        </div>
+        <button class="btn btn-primary btn-block" type="submit">
+          Log In
+        </button>
+      </form>
+    </div>
+  </section>
+</main>

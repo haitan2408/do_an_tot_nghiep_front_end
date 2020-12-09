@@ -1,0 +1,107 @@
+<div class="right_col" style="min-height: 863px">
+  <div class="page-title">
+    <div class="title_left">
+      <h3>Tables <small>User</small></h3>
+    </div>
+
+    <div class="title_right">
+      <div class="col-md-3 col-sm-3 form-group pull-right top_search">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search for..." [(ngModel)]="search" name="search">
+          <span class="input-group-btn">
+                      <button class="btn btn-default" type="button" (click)="onSubmit(0)">Go!</button>
+                    </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-10 col-sm-10">
+    <div class="x_panel">
+      <div class="x_content">
+        <div class="table-responsive">
+          <table class="table table-striped jambo_table bulk_action">
+            <thead>
+            <tr class="headings">
+              <th class="column-title" width="5%">#</th>
+              <th class="column-title" width="15%">Username</th>
+              <th class="column-title" width="15%">Email</th>
+              <th class="column-title" width="15%">FullName</th>
+              <th class="column-title" width="20%">Education</th>
+              <th class="column-title" width="20%">Role</th>
+              <th class="column-title no-link last" width="10%"><span class="nobr">Action</span>
+              </th>
+              <th class="bulk-actions" colspan="7">
+                <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> )
+                  <i class="fa fa-chevron-down"></i></a>
+              </th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr *ngFor="let user of listUser; index as i">
+              <td class=" ">{{i + 1}}</td>
+              <td class=" ">{{user.username}}</td>
+              <td class=" ">{{user.email}}</td>
+              <td class=" ">{{user.fullName}}</td>
+              <td class=" ">{{user.education}}</td>
+              <td>
+              <span *ngFor="let authority of  user.authorities">
+               {{authority.authority}}; </span>
+              </td>
+              <td class=" last">
+                <a href="#table" data-toggle="modal" style="font-size: 17px;"
+                   (click)="viewUser(user)">
+                  <i style=" color: #1abb9c;font-size: 17px" class="fa fa-eye"></i></a>
+                <a href="#table" data-toggle="modal" style="font-size: 17px;"
+                   (click)="openConfirmLock(user.id, user.email)" *ngIf="!checkAccountAdmin(user)&& user.enabled">
+                  &nbsp;&nbsp;<i style=" color: #ff1a15;font-size: 17px" class="fa fa-lock"></i></a>
+                <a href="#table" data-toggle="modal" style="font-size: 17px;"
+                   (click)="openConfirmUnLock(user.id, user.email)" *ngIf="!checkAccountAdmin(user)&& !user.enabled">
+                  &nbsp;&nbsp;<i style=" color: #ff1a15;font-size: 17px" class="fa fa-unlock"></i></a>
+                <a href="#table" data-toggle="modal" style="font-size: 17px;"
+                   (click)="openConfirmDelete(user.id, user.email)" *ngIf="!checkAccountAdmin(user)">
+                  &nbsp;&nbsp;<i style=" color: #ff1a15;font-size: 17px" class="fa fa-trash"></i></a>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+          <div class="paging-course">
+            <nav aria-label="Page navigation example">
+              <ul class="pagination">
+                <li class="page-item" (click)="onFirst()" [ngClass]="pageClicked==0?'disabled':''">
+                  <a class="page-link">First</a>
+                </li>
+                <li class="page-item" (click)="onPrevious()" [ngClass]="pageClicked==0?'disabled':''">
+                  <a class="page-link">Previous</a>
+                </li>
+                <li *ngIf="pageClicked != 0" class="page-item" (click)="onSubmit(pages[pageClicked-1])">
+                  <a class="page-link">{{pageClicked}}</a>
+                </li>
+                <li [ngClass]="(pageClicked == pages[pageClicked]) ? 'active' : ''" class="page-item"
+                    (click)="onSubmit(pages[pageClicked])">
+                  <a class="page-link">{{pageClicked + 1}}</a>
+                </li>
+                <li *ngIf="pageClicked < pages.length -1" class="page-item" (click)="onSubmit(pages[pageClicked+1])">
+                  <a class="page-link">{{pageClicked + 2}}</a>
+                </li>
+                <li *ngIf="pageClicked < pages.length -2" class="page-item">
+                  <a class="page-link">...</a>
+                </li>
+                <li *ngIf="pageClicked < pages.length-2" class="page-item" (click)="onLast()">
+                  <a class="page-link">{{pages[pages.length - 1] + 1}}</a>
+                </li>
+                <li class="page-item" (click)="onNext()" [ngClass]="pageClicked==totalPages-1?'disabled':''">
+                  <a class="page-link">Next</a>
+                </li>
+                <li class="page-item" (click)="onLast()" [ngClass]="pageClicked==totalPages-1?'disabled':''"><a
+                  class="page-link">Last</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>

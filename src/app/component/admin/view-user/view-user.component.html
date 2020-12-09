@@ -1,0 +1,71 @@
+<div class="row">
+  <div class="col-6">
+    <div class="row">
+      <div class="col-12">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <p id="username" style="font-size: 1rem;font-weight: 400;line-height: 1.5;">{{user.username}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <p id="email" style="font-size: 1rem;font-weight: 400;line-height: 1.5;">{{user.email}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="form-group">
+          <label for="fullName">Full Name</label>
+          <p id="fullName" style="font-size: 1rem;font-weight: 400;line-height: 1.5;">{{user.fullName}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="form-group">
+          <label for="education">Education</label>
+          <p id="education" style="font-size: 1rem;font-weight: 400;line-height: 1.5;">{{user.education}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="form-group">
+          <label for="experience">Experience</label>
+          <p id="experience" style="font-size: 1rem;font-weight: 400;line-height: 1.5;">{{user.experience}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="form-group">
+          <label for="skills">Skills</label>
+          <p id="skills" style="font-size: 1rem;font-weight: 400;line-height: 1.5;">{{user.skills}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="form-group">
+          <label for="authorities">Authorities</label>
+          <br>
+          <span id="authorities" style="font-size: 1rem;font-weight: 400;line-height: 1.5;"
+                *ngFor="let authority of user.authorities">
+        <span>{{authority.authority}};   </span>
+      </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-6">
+    <div class="form-group">
+      <label for="avatar">Avatar</label>
+      <br>
+      <img id="img" style="border-radius: 50%" width="300px" height="300px" src="{{user.urlImg}}"/>
+    </div>
+  </div>
+</div>

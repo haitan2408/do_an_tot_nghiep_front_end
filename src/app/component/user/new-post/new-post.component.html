@@ -1,0 +1,58 @@
+<div class="mat-app-background basic-container">
+  <ng-template #customLoadingTemplate>
+    <div class="custom-class">
+      <h3>
+        Loading...
+      </h3>
+    </div>
+  </ng-template>
+
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"
+               [template]="customLoadingTemplate"></ngx-loading>
+
+</div>
+<main class="page login-page">
+  <section
+    class="clean-block clean-form dark"
+    style="background-color: rgb(255,255,255);"
+  >
+    <div class="container">
+      <div class="block-heading" style="padding-top: 40px;">
+        <h2 class="text-info">New Post</h2>
+        <p>
+          Quality and consistency are key to social media success.<br/>
+        </p>
+      </div>
+      <form method="POST" class="shadow" [formGroup]="registerForm" (ngSubmit)="onSubmitNewPost()">
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input id="title" class="form-control item" type="text" name="title" placeholder="Title" required="required" formControlName="title"/>
+        </div>
+        <div *ngFor="let validation of validation_messages.title">
+          <div class="error-message"
+               *ngIf="registerForm.get('title').hasError(validation.type) && (registerForm.get('title').dirty || registerForm.get('title').touched)">
+            {{validation.message}}</div>
+        </div>
+        <div class="error-message">
+          {{listError.title}}
+        </div>
+        <div class="form-group">
+          <label for="body">Body</label>
+          <textarea id="body" class="form-control" name="body" placeholder="Body" rows="3" required="required" formControlName="content">
+          </textarea>
+        </div>
+        <div *ngFor="let validation of validation_messages.content">
+          <div class="error-message"
+               *ngIf="registerForm.get('content').hasError(validation.type) && (registerForm.get('content').dirty || registerForm.get('content').touched)">
+            {{validation.message}}</div>
+        </div>
+        <div class="error-message">
+          {{listError.content}}
+        </div>
+        <button class="btn btn-primary btn-block" type="submit">
+          Submit
+        </button>
+      </form>
+    </div>
+  </section>
+</main>

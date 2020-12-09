@@ -1,0 +1,25 @@
+<div class="mat-app-background basic-container">
+  <ng-template #customLoadingTemplate>
+    <div class="custom-class">
+      <h3>
+        Loading...
+      </h3>
+    </div>
+  </ng-template>
+
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"
+               [template]="customLoadingTemplate"></ngx-loading>
+
+</div>
+<div class="card col-12" style="margin-top: 50px">
+  <img id="img-avatar" class="card-img-top" src="{{user.urlImg}}" height="400px"/>
+  <div class="card-body">
+    <button style="display:block;" onclick="document.getElementById('getFile').click()">
+      <i class="fa fa-cloud-upload"></i>Upload avatar</button>
+    <input type="file"
+           id="getFile" style="display:none" #userPhoto (change)="onFileSelected($event)" name="image" autocomplete="off"/>
+  </div>
+  <div class="card-footer" style="background-color: white">
+    <button class="btn btn-success" (click)="onSubmitImgFireBase()">Change avatar</button>
+  </div>
+</div>

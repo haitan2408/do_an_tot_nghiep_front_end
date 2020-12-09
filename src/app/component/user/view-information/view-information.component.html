@@ -1,0 +1,184 @@
+<div class="mat-app-background basic-container">
+  <ng-template #customLoadingTemplate>
+    <div class="custom-class">
+      <h3>
+        Loading...
+      </h3>
+    </div>
+  </ng-template>
+
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"
+               [template]="customLoadingTemplate"></ngx-loading>
+</div>
+<div id="profile" class="container" style="margin-top: 7%">
+  <div class="row">
+    <ul class="nav">
+      <li class="nav-item">
+        <a class="nav-link" style="color: #007bff" (click)="viewProfile()">Post</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" style="color: #007bff" (click)="viewInformation()">Information</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="row">
+    <div class="col-8">
+      <form method="POST" role="form" [formGroup]="updateForm">
+        <div class="form-group">
+          <label for="fullName">Full Name</label>
+          <p *ngIf="!isEdit" style="font-size: 1rem;font-weight: 400;line-height: 1.5;">{{user.fullName}}</p>
+          <input *ngIf="(user.username == username) && isEdit " class="form-control item" type="text" id="fullName"
+                 placeholder="John Doe" name="fullName" formControlName="fullName"
+                 required autofocus/>
+        </div>
+        <div *ngIf="(user.username == username) && isEdit ">
+          <div *ngFor="let validation of validation_messages.fullName">
+            <div class="error-message"
+                 *ngIf="updateForm.get('fullName').hasError(validation.type) && (updateForm.get('fullName').dirty || updateForm.get('fullName').touched)">
+              {{validation.message}}
+            </div>
+            <div class="error-message">
+              {{listError.fullName}}
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <p style="font-size: 1rem;font-weight: 400;line-height: 1.5;">{{user.email}}</p>
+        </div>
+        <div class="form-group">
+          <label for="username">Username</label>
+          <p *ngIf="!isEdit" style="font-size: 1rem;font-weight: 400;line-height: 1.5;">{{user.username}}</p>
+          <input *ngIf="(user.username == username) && isEdit " class="form-control item" type="text" id="username"
+                 placeholder="JDoe" name="username" formControlName="username"
+                 required autofocus/>
+        </div>
+        <div *ngIf="(user.username == username) && isEdit ">
+          <div *ngFor="let validation of validation_messages.username">
+            <div class="error-message"
+                 *ngIf="updateForm.get('username').hasError(validation.type) && (updateForm.get('username').dirty || updateForm.get('username').touched)">
+              {{validation.message}}</div>
+          </div>
+          <div class="error-message">
+            {{listError.username}}
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="education">Education</label>
+          <p *ngIf="!isEdit" style="font-size: 1rem;font-weight: 400;line-height: 1.5;">{{user.education}}</p>
+          <input *ngIf="(user.username == username) && isEdit " class="form-control item" type="text" id="education"
+                 placeholder="Bachelors in Computer Science" name="education" formControlName="education"
+                 required autofocus/>
+        </div>
+        <div *ngIf="(user.username == username) && isEdit ">
+          <div *ngFor="let validation of validation_messages.education">
+            <div class="error-message"
+                 *ngIf="updateForm.get('education').hasError(validation.type) && (updateForm.get('education').dirty || updateForm.get('education').touched)">
+              {{validation.message}}</div>
+          </div>
+          <div class="error-message">
+            {{listError.education}}
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="skills">Skills Summary</label>
+          <p *ngIf="!isEdit" style="font-size: 1rem;font-weight: 400;line-height: 1.5;">{{user.skills}}</p>
+          <input *ngIf="(user.username == username) && isEdit " class="form-control item" type="text" id="skills"
+                 placeholder="Java, React, Web-Dev, SQL" name="skill" formControlName="skills"
+                 required autofocus/>
+        </div>
+        <div *ngIf="(user.username == username) && isEdit ">
+          <div *ngFor="let validation of validation_messages.skills">
+            <div class="error-message"
+                 *ngIf="updateForm.get('skills').hasError(validation.type) && (updateForm.get('skills').dirty || updateForm.get('skills').touched)">
+              {{validation.message}}</div>
+          </div>
+          <div class="error-message">
+            {{listError.skills}}
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="experience">Experience</label>
+          <p *ngIf="!isEdit" style="font-size: 1rem;font-weight: 400;line-height: 1.5;">{{user.experience}}</p>
+          <input *ngIf="(user.username == username) && isEdit " class="form-control item" type="text" id="experience"
+                 placeholder="4 years of Software Engineering using Java Spring and JavaScript React."
+                 name="work" formControlName="experience" required autofocus/>
+        </div>
+        <div *ngIf="(user.username == username) && isEdit ">
+          <div *ngFor="let validation of validation_messages.experience">
+            <div class="error-message"
+                 *ngIf="updateForm.get('experience').hasError(validation.type) && (updateForm.get('experience').dirty || updateForm.get('experience').touched)">
+              {{validation.message}}</div>
+          </div>
+          <div class="error-message">
+            {{listError.experience}}
+          </div>
+        </div>
+        <div>
+          <button class="btn btn-primary btn-block" type="submit" *ngIf="username==user.username && !isEdit"
+                  (click)="viewFormEdit()">
+            Edit information
+          </button>
+          <button class="btn btn-primary btn-block-edit" type="submit" *ngIf="username==user.username && isEdit"
+                  (click)="onSubmitUpdate()">
+            Update information
+          </button>
+          <button style="margin-left: 20px" class="btn btn-danger btn-block-edit" type="submit" *ngIf="username==user.username && isEdit"
+                  (click)="cancel()">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+    <!-- Right Side -->
+    <div class="col-3 offset-1">
+      <div class="row">
+        <div class="card col-12">
+          <img id="img" class="card-img-top" src="{{user.urlImg}}"
+          />
+          <div class="card-body">
+            {{user.username}}
+            <button *ngIf="username ==user.username" class="btn-upload" (click)="changeAvatar()"><i
+              class="fa fa-upload">Change avatar</i></button>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="card col-12">
+          <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+          <div class="card-body">
+            <h5 class="card-title">Your Information</h5>
+            <p class="card-text">
+              Posts: {{listPost.length}}<br/>
+              Comments: {{amountComment}}<br/>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="card col-12">
+          <h5 class="card-title recentLinks">Recent Links Clicked</h5>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <a href="#">What's new in Spring Boot 2</a>
+            </li>
+            <li class="list-group-item">
+              <a href="#">10 Features in Java 10</a>
+            </li>
+            <li class="list-group-item">
+              <a href="#">9 Features in Java 9</a>
+            </li>
+            <li class="list-group-item">
+              <a href="#">8 Features in Java 8</a>
+            </li>
+            <li class="list-group-item">
+              <a href="#">7 Reasons not to use Java 7</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- // row -->
+</div>
