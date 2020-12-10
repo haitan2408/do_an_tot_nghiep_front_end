@@ -5,6 +5,7 @@ import {UserService} from '../../../service/user.service';
 import {MatDialog, MatSnackBar} from '@angular/material';
 import {ChangeAvatarComponent} from '../change-avatar/change-avatar.component';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {UpdatePasswordComponent} from '../update-password/update-password.component';
 
 @Component({
   selector: 'app-view-information',
@@ -16,10 +17,10 @@ export class ViewInformationComponent implements OnInit {
   user: any = null;
   loading = false;
   username = '';
-  listPost =[];
-  amountComment=0;
+  listPost = [];
+  amountComment = 0;
   updateForm: FormGroup;
-  listError="";
+  listError = '';
   isEdit = false;
   validation_messages = {
     'fullName': [
@@ -37,7 +38,7 @@ export class ViewInformationComponent implements OnInit {
     'experience': [
       {type: 'required', message: 'Experience không được để trống.'}
     ]
-  }
+  };
 
   constructor(private route: ActivatedRoute, private tokenStorageService: TokenStorageService, private router: Router,
               private userService: UserService, private snackBar: MatSnackBar, private dialog: MatDialog, private fb: FormBuilder) {
@@ -47,10 +48,9 @@ export class ViewInformationComponent implements OnInit {
   ngOnInit() {
     this.loading = true;
     this.email = this.route.snapshot.params['email'];
-    console.log(this.email)
     this.userService.getProfile(this.email).subscribe(data => {
       this.listPost = data;
-      this.userService.getProfileInformation(this.email).subscribe(data=> {
+      this.userService.getProfileInformation(this.email).subscribe(data => {
         this.user = data;
         this.updateForm.patchValue(this.user);
       });
@@ -83,7 +83,7 @@ export class ViewInformationComponent implements OnInit {
       data: this.user
     });
     dialogRef.afterClosed().subscribe(async (confirmed: boolean) => {
-      if(confirmed){
+      if (confirmed) {
         window.location.reload();
       }
     });
@@ -109,25 +109,25 @@ export class ViewInformationComponent implements OnInit {
       experience: new FormControl('', Validators.compose([
         Validators.required,
       ])),
-    })
+    });
   }
 
   onSubmitUpdate() {
     this.loading = true;
-    console.log(this.updateForm.value)
-    if(this.updateForm.valid) {
-      this.userService.updateInformation(this.updateForm.value).subscribe(data=> {
+    console.log(this.updateForm.value);
+    if (this.updateForm.valid) {
+      this.userService.updateInformation(this.updateForm.value).subscribe(data => {
         this.tokenStorageService.saveUsername(this.updateForm.get('username').value);
         this.isEdit = false;
         this.snackBar.open('Update information successfully!', 'update', {
           duration: 2000,
         });
-          this.ngOnInit();
+        this.ngOnInit();
       }, error => {
         this.snackBar.open('Update information error', 'error', {
           duration: 2000,
         });
-      })
+      });
 
     }
   }
@@ -140,4 +140,23 @@ export class ViewInformationComponent implements OnInit {
     this.isEdit = false;
   }
 
+  updatePassword(id: number) {
+    const dialogRef = this.dialog.open(UpdatePasswordComponent, {
+      width: '40%',
+      // height: '70%',
+      data: id
+    });
+    dialogRef.afterClosed().subscribe(async (confirmed: boolean) => {
+      if (confirmed) {
+        this.snackBar.open('Update password successfully!', 'update', {
+          duration: 4000,
+        });
+        this.ngOnInit();
+      } else {
+        this.snackBar.open('Update password failed!', 'update', {
+          duration: 4000,
+        });
+      }
+    });
+  }
 }

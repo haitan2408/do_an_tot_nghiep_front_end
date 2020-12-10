@@ -120,6 +120,10 @@
                   (click)="viewFormEdit()">
             Edit information
           </button>
+          <button class="btn btn-primary btn-block" type="submit" *ngIf="username==user.username && !isEdit"
+                  (click)="updatePassword(user.id)">
+            Update password
+          </button>
           <button class="btn btn-primary btn-block-edit" type="submit" *ngIf="username==user.username && isEdit"
                   (click)="onSubmitUpdate()">
             Update information

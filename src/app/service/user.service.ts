@@ -53,4 +53,8 @@ export class UserService {
   unlockUserByAdmin(id: number) {
     return this.http.patch(this.baseURL + "admin/user/"+id,null,this.httpOptions);
   }
+
+  updatePassword(idUser: number, newPassword: string, currentPassword: string):Observable<any> {
+    return this.http.put(this.baseURL+"update-password/"+idUser, { newPassword: newPassword, currentPassword: currentPassword}, this.httpOptions);
+  }
 }

@@ -9,8 +9,9 @@
   color: blue;
 }
 .btn-block {
-  display: block;
-  width: 70%
+  display: inline-block;
+  margin-left: 5%;
+  width: 30%
 }
 .btn-block-edit {
   display: inline-block;

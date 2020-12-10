@@ -34,6 +34,7 @@ import { ViewCommentAdminComponent } from './component/admin/view-comment-admin/
 import { ManagerUserComponent } from './component/admin/manager-user/manager-user.component';
 import { ViewUserComponent } from './component/admin/view-user/view-user.component';
 import { ConfirmLockUserComponent } from './component/admin/confirm-lock-user/confirm-lock-user.component';
+import { UpdatePasswordComponent } from './component/user/update-password/update-password.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { ConfirmLockUserComponent } from './component/admin/confirm-lock-user/co
     ManagerUserComponent,
     ViewUserComponent,
     ConfirmLockUserComponent,
+    UpdatePasswordComponent,
   ],
   imports: [
     BrowserModule,

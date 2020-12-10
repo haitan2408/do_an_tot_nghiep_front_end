@@ -43,15 +43,12 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     this.auth.attemptAuth(userInfo).subscribe(
       data => {
-        this.loading = false;
         this.tokenStorage.saveAuthorities(data.authorities)
         this.tokenStorage.saveToken(data.token);
         this.tokenStorage.saveUsername(data.username);
         this.tokenStorage.saveEmail(data.email);
-        console.log(data.email);
-        console.log(data)
         if(this.tokenStorage.getAuthorities().indexOf("ROLE_ADMIN")!=-1) {
-          this.router.navigateByUrl("/admin")
+          this.router.navigateByUrl("/admin/post")
         }else {
           this.router.navigateByUrl("/");
           this.userComponent.ngOnInit();
@@ -59,10 +56,11 @@ export class LoginComponent implements OnInit {
         }
       },
       error => {
-        this.loading = false;
         this.snackBar.open('Sai tài khoản hoặc mật khẩu!', '', {
           duration: 4000,
         });
+      }, () => {
+        this.loading = false;
       }
     );
 

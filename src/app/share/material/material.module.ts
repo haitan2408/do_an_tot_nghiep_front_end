@@ -16,6 +16,7 @@ import {ViewPostAdminComponent} from '../../component/admin/view-post-admin/view
 import {ViewCommentAdminComponent} from '../../component/admin/view-comment-admin/view-comment-admin.component';
 import {ViewUserComponent} from '../../component/admin/view-user/view-user.component';
 import {ConfirmLockUserComponent} from '../../component/admin/confirm-lock-user/confirm-lock-user.component';
+import {UpdatePasswordComponent} from '../../component/user/update-password/update-password.component';
 const MaterialModules = [
   MatProgressBarModule,
   MatProgressSpinnerModule,
@@ -51,6 +52,6 @@ const MaterialModules = [
     MaterialModules
   ],
   entryComponents: [ConfirmationDialogComponent, EditPostComponent, NewPostComponent, ChangeAvatarComponent, ConfirmDeleteComponent,
-  ViewPostAdminComponent, ViewCommentAdminComponent, ViewUserComponent, ConfirmLockUserComponent],
+  ViewPostAdminComponent, ViewCommentAdminComponent, ViewUserComponent, ConfirmLockUserComponent, UpdatePasswordComponent],
 })
 export class MaterialModule { }
