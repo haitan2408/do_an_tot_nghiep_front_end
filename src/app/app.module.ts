@@ -35,6 +35,8 @@ import { ManagerUserComponent } from './component/admin/manager-user/manager-use
 import { ViewUserComponent } from './component/admin/view-user/view-user.component';
 import { ConfirmLockUserComponent } from './component/admin/confirm-lock-user/confirm-lock-user.component';
 import { UpdatePasswordComponent } from './component/user/update-password/update-password.component';
+import {InfiniteScrollModule} from 'ngx-infinite-scroll';
+import { ViewRecommendationRecordComponent } from './component/user/view-recommendation-record/view-recommendation-record.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +61,7 @@ import { UpdatePasswordComponent } from './component/user/update-password/update
     ViewUserComponent,
     ConfirmLockUserComponent,
     UpdatePasswordComponent,
+    ViewRecommendationRecordComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,7 +73,8 @@ import { UpdatePasswordComponent } from './component/user/update-password/update
     MaterialModule,
     NgxLoadingModule.forRoot({}),
     AngularFireStorageModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig)
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    InfiniteScrollModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -16,9 +16,6 @@ export class PostService {
       , 'Access-Control-Allow-Origin': 'http://localhost:4201', 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
     };
   }
-  getAllPost(): Observable<any>  {
-    return this.http.get(this.baseURL);
-  }
 
   getPostById(id: number): Observable<any>  {
     return this.http.get(this.baseURL+"post/"+id);
@@ -44,4 +41,7 @@ export class PostService {
     return this.http.post(this.baseURL+"post/submit", value, this.httpOptions);
   }
 
+  getAllPostByUser(size: number, search: string): Observable<any> {
+    return this.http.get(this.baseURL+"?size=" + size + "&search="+search);
+  }
 }

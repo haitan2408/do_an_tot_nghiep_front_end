@@ -52,13 +52,14 @@ export class LoginComponent implements OnInit {
         }else {
           this.router.navigateByUrl("/");
           this.userComponent.ngOnInit();
-
         }
+        this.loading = false;
       },
       error => {
         this.snackBar.open('Sai tài khoản hoặc mật khẩu!', '', {
           duration: 4000,
         });
+        this.loading = false;
       }, () => {
         this.loading = false;
       }

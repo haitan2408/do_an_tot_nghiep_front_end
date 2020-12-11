@@ -1,0 +1,8 @@
+<h5>Khuyến nghị. Các bạn nên học những môn dưới đây.</h5>
+<div class="form-group" *ngFor="let record of listRecord" style="width: 100%">
+  <div style="display: inline-block">
+    Môn học: <label>{{record.attributeName}}</label>:
+    <br>
+    Điểm khuyến nghị: <span id="lastModifiedDate" style="font-size: 1rem;font-weight: 400;line-height: 1.5;">{{record.score}}</span>
+  </div>
+</div>
