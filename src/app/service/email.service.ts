@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {TokenStorageService} from '../auth/token-storage.service';
-import {Observable} from 'rxjs';
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {TokenStorageService} from "../auth/token-storage.service";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
-export class RecommendService {
+export class EmailService {
   httpOptions: any;
   baseURL = "http://localhost:8080/"
   constructor(private http: HttpClient, private tokenStorage: TokenStorageService) {
@@ -15,12 +15,7 @@ export class RecommendService {
       , 'Access-Control-Allow-Origin': 'http://localhost:4201', 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
     };
   }
-
-  recommendations(email: string): Observable<any> {
-    return this.http.get(this.baseURL+"recommendations/"+email, this.httpOptions);
-  }
-
-  updateDataRecommend(): Observable<any> {
-    return this.http.post(this.baseURL+"update-data", null,this.httpOptions);
+  sendEmail(listValueEmail: string[]): Observable<any> {
+    return this.http.post(this.baseURL+"email", {listEmail: listValueEmail}, this.httpOptions)
   }
 }

@@ -84,7 +84,7 @@ export class AdminPostComponent implements OnInit {
       if (confirmed) {
         this.postService.deletePost(id).subscribe(next => {
           this.snackBar.open('Delete successfully!', 'delete', {
-            duration: 2000,
+            duration: 4000,
           })
           this.ngOnInit();
           },error => {

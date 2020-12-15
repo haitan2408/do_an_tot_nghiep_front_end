@@ -1,0 +1,27 @@
+<div class="mat-app-background basic-container">
+  <ng-template #customLoadingTemplate>
+    <div class="custom-class">
+      <h3>
+        Loading...
+      </h3>
+    </div>
+  </ng-template>
+
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"
+               [template]="customLoadingTemplate"></ngx-loading>
+
+</div>
+<h2 mat-dialog-title>Email</h2>
+<mat-dialog-content>
+  <div *ngFor="let email of listEmail; let i = index" class="form-group" style="display: flex">
+    <input class="form-control" name="email" (change)="addValue($event.target.value, i)">
+    <button (click)="deleteEmail(i)" class="button-remove-email"><i class="fa fa-user-times fa-2x" style="margin-top: 20%"></i></button>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button class="button-add-email" (click)="addEmail()" align="start"><i class="fa fa-plus-square fa-3x"></i></button>
+</mat-dialog-actions>
+<mat-dialog-actions align="end">
+  <button class="btn btn-outline-primary" type="button" (click)="submitEmail()" style="justify-content: flex-end">Submit</button>
+  <button class="btn btn-outline-danger" style="margin-left: 10px; justify-content: flex-end" (click)="closeModal()">Cancel</button>
+</mat-dialog-actions>

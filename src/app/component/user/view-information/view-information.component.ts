@@ -14,7 +14,7 @@ import {UpdatePasswordComponent} from '../update-password/update-password.compon
 })
 export class ViewInformationComponent implements OnInit {
   email = '';
-  user: any = null;
+  user:any = '';
   loading = false;
   username = '';
   listPost = [];

@@ -15,7 +15,7 @@ import {ConfirmLockUserComponent} from '../confirm-lock-user/confirm-lock-user.c
 })
 export class ManagerUserComponent implements OnInit {
   loading = false;
-  size = 2;
+  size = 5;
   pageClicked = 0;
   pages = [];
   totalPages = 1;

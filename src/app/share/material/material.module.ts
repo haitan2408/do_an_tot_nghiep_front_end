@@ -18,6 +18,8 @@ import {ViewUserComponent} from '../../component/admin/view-user/view-user.compo
 import {ConfirmLockUserComponent} from '../../component/admin/confirm-lock-user/confirm-lock-user.component';
 import {UpdatePasswordComponent} from '../../component/user/update-password/update-password.component';
 import {ViewRecommendationRecordComponent} from '../../component/user/view-recommendation-record/view-recommendation-record.component';
+import {SendEmailComponent} from "../../component/admin/send-email/send-email.component";
+
 const MaterialModules = [
   MatProgressBarModule,
   MatProgressSpinnerModule,
@@ -54,6 +56,6 @@ const MaterialModules = [
   ],
   entryComponents: [ConfirmationDialogComponent, EditPostComponent, NewPostComponent, ChangeAvatarComponent, ConfirmDeleteComponent,
   ViewPostAdminComponent, ViewCommentAdminComponent, ViewUserComponent, ConfirmLockUserComponent, UpdatePasswordComponent,
-  ViewRecommendationRecordComponent],
+  ViewRecommendationRecordComponent, SendEmailComponent],
 })
 export class MaterialModule { }

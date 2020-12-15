@@ -37,7 +37,7 @@ export class ChangeAvatarComponent implements OnInit {
 
   onSubmitImgFireBase() {
     let date = new Date();
-    const filePath = 'avatar/' + this.user.username + '_avatar';
+    const filePath = 'avatar/' + this.user.username + '_avatar_'+date.getTime();
     const fileRef = this.storage.ref(filePath);
     const task = this.storage.upload(filePath, this.selectedFile);
     task

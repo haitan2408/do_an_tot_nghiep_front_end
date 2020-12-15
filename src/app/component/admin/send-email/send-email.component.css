@@ -1,0 +1,11 @@
+.button-add-email{
+    border: none;
+    color: #007bff;
+  background-color: white;
+}
+
+.button-remove-email{
+    border: none;
+    color: #dc3545;
+  background-color: white;
+}
