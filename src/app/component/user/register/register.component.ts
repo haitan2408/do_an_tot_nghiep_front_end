@@ -10,7 +10,7 @@ import {UserService} from '../../../service/user.service';
 })
 export class RegisterComponent implements OnInit {
   success = false;
-  registerForm: FormGroup
+  registerForm: FormGroup;
   listError: any = "";
 
   validation_messages = {

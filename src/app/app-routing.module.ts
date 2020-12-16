@@ -13,6 +13,7 @@ import {ViewInformationComponent} from './component/user/view-information/view-i
 import {AuthGuard} from './auth/auth.guard.service';
 import {AdminAuthService} from './auth/admin-auth.service';
 import {ManagerUserComponent} from './component/admin/manager-user/manager-user.component';
+import {RecommendationsUserComponent} from "./component/user/recommendations-user/recommendations-user.component";
 
 
 const routes: Routes = [
@@ -24,7 +25,8 @@ const routes: Routes = [
       {path: 'new-post', component: NewPostComponent,canActivate: [AuthGuard]},
       {path: 'view-post/:id', component: ViewPostComponent},
       {path: 'view-profile/:email', component: ViewProfileComponent},
-      {path: 'view-information/:email', component: ViewInformationComponent}
+      {path: 'view-information/:email', component: ViewInformationComponent},
+      {path: 'recommendations/:email', component: RecommendationsUserComponent, canActivate: [AuthGuard]}
     ]
   },
   {

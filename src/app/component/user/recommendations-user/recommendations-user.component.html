@@ -1,0 +1,37 @@
+<div class="mat-app-background basic-container">
+  <ng-template #customLoadingTemplate>
+    <div class="custom-class">
+      <h3>
+        Loading...
+      </h3>
+    </div>
+  </ng-template>
+
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"
+               [template]="customLoadingTemplate"></ngx-loading>
+</div>
+<form [formGroup]="formRecommendations" (ngSubmit)="onSubmitRecommendations()">
+  <div class="container mt-sm-12 my-1">
+    <div class="py-2 h5"><b>Điền thông tin </b></div>
+    <div class="row">
+      <div class="question col-4" *ngFor="let language of listLanguage">
+        <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3 optionsGroup">
+          <div class="py-2 h6"><b>{{language.toLocaleUpperCase()}}: </b></div>
+          <div *ngFor="let reply of listReply; let i = index ">
+            <label class="options">{{reply}}<input type="radio" name="{{language}}" value="{{listResult[i]}}"
+                                                   formControlName="{{language}}"><span class="checkmark"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row d-flex justify-content-center" align="center" style="margin-top: 30px">
+      <button class="btn btn-outline-primary" type="submit" style="width: 20%; margin-right: 5%">
+        Submit
+      </button>
+      <button class="btn btn-outline-danger" type="button" (click)="clearForm()" style="width: 20%">
+        Clear
+      </button>
+    </div>
+  </div>
+</form>

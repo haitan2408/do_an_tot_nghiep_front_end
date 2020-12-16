@@ -16,8 +16,8 @@ export class RecommendService {
     };
   }
 
-  recommendations(email: string): Observable<any> {
-    return this.http.get(this.baseURL+"recommendations/"+email, this.httpOptions);
+  recommendations(value: any): Observable<any> {
+    return this.http.post(this.baseURL+"recommendations",value, this.httpOptions);
   }
 
   updateDataRecommend(): Observable<any> {

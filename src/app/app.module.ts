@@ -38,7 +38,7 @@ import { UpdatePasswordComponent } from './component/user/update-password/update
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import { ViewRecommendationRecordComponent } from './component/user/view-recommendation-record/view-recommendation-record.component';
 import {SendEmailComponent} from "./component/admin/send-email/send-email.component";
-
+import { RecommendationsUserComponent } from './component/user/recommendations-user/recommendations-user.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,7 +63,8 @@ import {SendEmailComponent} from "./component/admin/send-email/send-email.compon
     ConfirmLockUserComponent,
     UpdatePasswordComponent,
     ViewRecommendationRecordComponent,
-    SendEmailComponent
+    SendEmailComponent,
+    RecommendationsUserComponent,
   ],
   imports: [
     BrowserModule,
