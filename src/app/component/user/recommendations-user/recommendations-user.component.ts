@@ -111,9 +111,6 @@ export class RecommendationsUserComponent implements OnInit {
     })
   }
 
-  submitRecommendations() {
-
-  }
 
   onSubmitRecommendations() {
     this.loading = true;
@@ -126,11 +123,17 @@ export class RecommendationsUserComponent implements OnInit {
         dialogRef.afterClosed().subscribe((confirmed: boolean) => {
         });
         this.loading = false;
+      }, error => {
+        this.snackBar.open('Bad request!', 'Error', {
+          duration: 4000,
+        });
+        this.loading = false;
       });
     } else {
       this.snackBar.open('Bad request!', 'Error', {
         duration: 4000,
       });
+      this.loading = false;
     }
 
   }

@@ -76,4 +76,8 @@ export class UpdatePasswordComponent implements OnInit {
       }
     });
   }
+
+  cancel() {
+    this.dialogRef.close(false);
+  }
 }
